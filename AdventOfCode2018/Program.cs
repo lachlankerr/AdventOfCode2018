@@ -84,13 +84,13 @@ namespace AdventOfCode2018
         {
             Console.WriteLine("Day 05");
             Day05 day = new Day05();
-            //Stopwatch stopwatch = new Stopwatch();
-            //stopwatch.Start();
-            Console.WriteLine("Part 1: {0}", day.Part1());// == Day04.Part1Answer);
-            //stopwatch.Stop();
-            //Console.WriteLine("Time for part 1: {0}", stopwatch.Elapsed.TotalMilliseconds);
-
-            Console.WriteLine("Part 2: {0}", day.Part2());// == Day04.Part2Answer);
+            
+            Console.WriteLine("Part 1: {0}", day.Part1() == Day05.Part1Answer);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Console.WriteLine("Part 2: {0}", day.Part2() == Day05.Part2Answer);
+            stopwatch.Stop();
+            Console.WriteLine("Time for part 2: {0}", stopwatch.Elapsed.TotalMilliseconds);
             Console.WriteLine();
         }
     }
