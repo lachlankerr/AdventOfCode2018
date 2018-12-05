@@ -84,7 +84,7 @@ namespace AdventOfCode2018
         {
             Console.WriteLine("Day 05");
             Day05 day = new Day05();
-            
+
             Console.WriteLine("Part 1: {0}", day.Part1() == Day05.Part1Answer);
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();

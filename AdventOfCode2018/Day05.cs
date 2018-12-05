@@ -20,28 +20,44 @@ namespace AdventOfCode2018
 
         public int Part1()
         {
-            char[] charList = Input.ToCharArray();
             Stack<char> stack = new Stack<char>();
 
             for (int i = 0; i < Input.Length; i++)
             {
                 if (stack.Count == 0)
                 {
-                    stack.Push(charList[i]);
+                    stack.Push(Input[i]);
                     continue;
                 }
                 char top = stack.Peek();
-                if (char.IsLower(top) && char.IsUpper(charList[i]) || char.IsLower(charList[i]) && char.IsUpper(top))
+                if (IsLower(top) && IsUpper(Input[i]) || IsLower(Input[i]) && IsUpper(top))
                 {
-                    if (char.ToLower(top).Equals(char.ToLower(charList[i])))
+                    if (ToLower(top).Equals(ToLower(Input[i])))
                     {
                         stack.Pop();
                         continue;
                     }
                 }
-                stack.Push(charList[i]);
+                stack.Push(Input[i]);
             }
             return stack.Count;
+        }
+
+        public bool IsLower(char c)
+        {
+            return c >= 'a' && c <= 'z';
+        }
+
+        public bool IsUpper(char c)
+        {
+            return c >= 'A' && c <= 'Z';
+        }
+
+        public char ToLower(char c)
+        {
+            if (IsLower(c))
+                return c;
+            return (char)(c + 32);
         }
 
         public int Part2()
