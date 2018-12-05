@@ -15,7 +15,8 @@ namespace AdventOfCode2018
             //prog.Day01Output();
             //prog.Day02Output();
             //prog.Day03Output();
-            prog.Day04Output();
+            //prog.Day04Output();
+            prog.Day05Output();
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
@@ -76,6 +77,20 @@ namespace AdventOfCode2018
             Console.WriteLine("Time for part 1: {0}", stopwatch.Elapsed.TotalMilliseconds);
 
             Console.WriteLine("Part 2: {0}", day.Part2() == Day04.Part2Answer);
+            Console.WriteLine();
+        }
+
+        void Day05Output()
+        {
+            Console.WriteLine("Day 05");
+            Day05 day = new Day05();
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
+            Console.WriteLine("Part 1: {0}", day.Part1());// == Day04.Part1Answer);
+            //stopwatch.Stop();
+            //Console.WriteLine("Time for part 1: {0}", stopwatch.Elapsed.TotalMilliseconds);
+
+            Console.WriteLine("Part 2: {0}", day.Part2());// == Day04.Part2Answer);
             Console.WriteLine();
         }
     }
