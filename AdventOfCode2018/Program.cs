@@ -75,7 +75,7 @@ namespace AdventOfCode2018
             stopwatch.Stop();
             Console.WriteLine("Time for part 1: {0}", stopwatch.Elapsed.TotalMilliseconds);
 
-            Console.WriteLine("Part 2: {0}", day.Part2());// == Day04.Part2Answer);
+            Console.WriteLine("Part 2: {0}", day.Part2() == Day04.Part2Answer);
             Console.WriteLine();
         }
     }

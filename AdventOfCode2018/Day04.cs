@@ -14,11 +14,11 @@ namespace AdventOfCode2018
         Dictionary<int,Dictionary<int, int>> GuardTimes;
 
         public const int Part1Answer = 138280;
-        public const int Part2Answer = 0;
+        public const int Part2Answer = 89347;
 
         public Day04()
         {
-            Input = System.IO.File.ReadAllLines("day04-input-spike.txt").ToList();
+            Input = System.IO.File.ReadAllLines("day04-input.txt").ToList();
             Input.Sort();
             GuardTimes = new Dictionary<int, Dictionary<int, int>>();
 
@@ -99,15 +99,24 @@ namespace AdventOfCode2018
 
         public int Part2()
         {
+            int currentGuard = 0;
+            int minutesGuardWasAsleep = 0;
+            int minuteGuardWasMostAsleep = 0;
+
             foreach (KeyValuePair<int, Dictionary<int, int>> guard in GuardTimes)
             {
                 foreach (KeyValuePair<int, int> time in guard.Value)
                 {
-
+                    if (time.Value > minutesGuardWasAsleep)
+                    {
+                        currentGuard = guard.Key;
+                        minutesGuardWasAsleep = time.Value;
+                        minuteGuardWasMostAsleep = time.Key;
+                    }
                 }
             }
 
-            return 0;
+            return currentGuard * minuteGuardWasMostAsleep;
         }
     }
 }
