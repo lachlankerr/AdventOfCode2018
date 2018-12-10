@@ -20,12 +20,35 @@ namespace AdventOfCode2018
 
         public int Part1()
         {
+            List<Coord> points = new List<Coord>();
+            List<List<char>> grid = new List<List<char>>();
+
+            int i = 0;
+            foreach (string line in Input)
+            {
+                string[] split = line.Split(new string[] { ", " }, StringSplitOptions.None);
+                points.Add(new Coord(i++, Convert.ToInt32(split[0]), Convert.ToInt32(split[1])));
+            }
             return 0;
         }
 
         public int Part2()
         {
             return 0;
+        }
+    }
+
+    class Coord
+    {
+        public int X { get; }
+        public int Y { get; }
+        public int Id { get; }
+
+        public Coord(int id, int x, int y)
+        {
+            X = x;
+            Y = y;
+            Id = id;
         }
     }
 }
