@@ -20,7 +20,8 @@ namespace AdventOfCode2018
                 () => prog.Day03Output(),
                 () => prog.Day04Output(),
                 () => prog.Day05Output(),
-                () => prog.Day06Output()
+                () => prog.Day06Output(),
+                () => prog.Day07Output()
             };
 
             Console.Write("Day to execute: ");
@@ -101,6 +102,16 @@ namespace AdventOfCode2018
 
             Timer(() => Console.WriteLine("Part 1: {0}", day.Part1() == Day06.Part1Answer));
             Console.WriteLine("Part 2: {0}", day.Part2() == Day06.Part2Answer);
+            Console.WriteLine();
+        }
+
+        void Day07Output()
+        {
+            Console.WriteLine("Day 07");
+            Day07 day = new Day07();
+
+            Console.WriteLine("Part 1: {0}", day.Part1());// == Day07.Part1Answer);
+            Console.WriteLine("Part 2: {0}", day.Part2());// == Day07.Part2Answer);
             Console.WriteLine();
         }
     }
