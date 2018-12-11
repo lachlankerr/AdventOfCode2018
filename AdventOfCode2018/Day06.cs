@@ -9,23 +9,23 @@ namespace AdventOfCode2018
     class Day06
     {
         readonly List<string> Input;
+        int width = 0;
+        int height = 0;
+        List<Point> points = new List<Point>();
+        int[,] grid;
 
         public const int Part1Answer = 3871;
-        public const int Part2Answer = 0;
+        public const int Part2Answer = 44667;
 
         public Day06()
         {
             Input = System.IO.File.ReadAllLines("day06-input.txt").ToList();
-            
+            CreatePoints();
         }
 
-        public int Part1()
+        public void CreatePoints()
         {
-            int width = 0;
-            int height = 0;
-
             //convert input into points
-            List<Point> points = new List<Point>();
             int i = 0;
             foreach (string line in Input)
             {
@@ -38,9 +38,12 @@ namespace AdventOfCode2018
                 if (temp.Y + 1 > height)
                     height = temp.Y + 1;
             }
+        }
 
-            //initialise grid with '.'
-            int[,] grid = new int[width, height];
+        public int Part1()
+        {
+            //initialise grid with -1
+            grid = new int[width, height];
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
@@ -52,7 +55,7 @@ namespace AdventOfCode2018
             //plot points on grid
             foreach (Point point in points)
             {
-                grid[point.X, point.Y] = point.Id;//GetCharFromPoint(point);
+                grid[point.X, point.Y] = point.Id;
             }
 
             //manhattan distance for each cell on grid
@@ -79,7 +82,7 @@ namespace AdventOfCode2018
                                 twoOrMore = true;
                         }
                         if (!twoOrMore) //two or more points for this cell are equal distance, so don't do anything
-                            grid[x, y] = bestPoint.Id;// GetCharFromPoint(bestPoint);
+                            grid[x, y] = bestPoint.Id;
                     }
                 }
             }
@@ -121,19 +124,23 @@ namespace AdventOfCode2018
             return Math.Abs(point1.X - point2.X) + Math.Abs(point1.Y - point2.Y);
         }
 
-        public char GetCharFromPoint(Point point)
-        {
-            return (char)('A' + point.Id);
-        }
-
-        public char GetLowerCharFromPoint(Point point)
-        {
-            return (char)('a' + point.Id);
-        }
-
         public int Part2()
         {
-            return 0;
+            int regionSize = 0;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Point current = new Point(-1, x, y);
+                    int distance = 0;
+                    foreach (Point point in points)
+                        distance += Manhattan(current, point);
+                    if (distance < 10000)
+                        regionSize++;
+                }
+            }
+            return regionSize;
         }
     }
 

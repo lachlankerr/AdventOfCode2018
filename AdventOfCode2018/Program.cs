@@ -99,8 +99,8 @@ namespace AdventOfCode2018
             Console.WriteLine("Day 06");
             Day06 day = new Day06();
 
-            Console.WriteLine("Part 1: {0}", day.Part1());// == Day06.Part1Answer);
-            Console.WriteLine("Part 2: {0}", day.Part2());// == Day06.Part2Answer);
+            Timer(() => Console.WriteLine("Part 1: {0}", day.Part1() == Day06.Part1Answer));
+            Console.WriteLine("Part 2: {0}", day.Part2() == Day06.Part2Answer);
             Console.WriteLine();
         }
     }
