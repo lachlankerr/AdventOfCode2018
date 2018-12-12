@@ -15,11 +15,30 @@ namespace AdventOfCode2018
 
         public Day07()
         {
-            Input = System.IO.File.ReadAllLines("day07-input.txt").ToList();
+            Input = System.IO.File.ReadAllLines("day07-input-example.txt").ToList();
+            //Input.Sort();
+            //System.IO.File.WriteAllLines("day07-input-sorted.txt", Input);
         }
 
         public int Part1()
         {
+            int numberOfLetters = 6;
+            List<List<char>> steps = new List<List<char>>();
+            for (int i = 0; i < numberOfLetters; i++)
+            {
+                steps.Add(new List<char>());
+            }
+            List<string> shortenedBackwardsInput = new List<string>();
+            foreach (string line in Input)
+            {
+                char previousStep = Convert.ToChar(line[5]);
+                char nextStep = Convert.ToChar(line[36]);
+                shortenedBackwardsInput.Add(nextStep + " <- " + previousStep);
+                steps[nextStep-65].Add(previousStep);
+            }
+            shortenedBackwardsInput.Sort();
+            System.IO.File.WriteAllLines("day07-input-sorted-shortbackwards.txt", shortenedBackwardsInput);
+
             return 0;
         }
 
