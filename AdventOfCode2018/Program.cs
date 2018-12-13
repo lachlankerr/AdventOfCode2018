@@ -25,7 +25,7 @@ namespace AdventOfCode2018
             };
 
             Console.Write("Day to execute: ");
-            int day = Convert.ToInt32(Console.ReadLine());
+            int day = 7;//Convert.ToInt32(Console.ReadLine());
             while (day > outputList.Count || day <= 0)
                 day = Convert.ToInt32(Console.ReadLine());
 

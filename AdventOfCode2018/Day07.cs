@@ -23,22 +23,27 @@ namespace AdventOfCode2018
         public int Part1()
         {
             int numberOfLetters = 6;
-            List<List<char>> steps = new List<List<char>>();
+            List<List<int>> steps = new List<List<int>>();
             for (int i = 0; i < numberOfLetters; i++)
             {
-                steps.Add(new List<char>());
+                steps.Add(new List<int>());
             }
-            List<string> shortenedBackwardsInput = new List<string>();
+            //List<string> shortenedBackwardsInput = new List<string>();
             foreach (string line in Input)
             {
                 char previousStep = Convert.ToChar(line[5]);
                 char nextStep = Convert.ToChar(line[36]);
-                shortenedBackwardsInput.Add(nextStep + " <- " + previousStep);
-                steps[nextStep-65].Add(previousStep);
+                //shortenedBackwardsInput.Add(nextStep + " <- " + previousStep);
+                steps[nextStep-65].Add(previousStep-65);
             }
-            shortenedBackwardsInput.Sort();
-            System.IO.File.WriteAllLines("day07-input-sorted-shortbackwards.txt", shortenedBackwardsInput);
-
+            //shortenedBackwardsInput.Sort();
+            //System.IO.File.WriteAllLines("day07-input-sorted-shortbackwards.txt", shortenedBackwardsInput);
+            List<int> startingLetters = new List<int>();
+            for (int i = 0; i < steps.Count; i++)
+            {
+                if (steps[i].Count == 0)
+                    startingLetters.Add(i);
+            }
             return 0;
         }
 
