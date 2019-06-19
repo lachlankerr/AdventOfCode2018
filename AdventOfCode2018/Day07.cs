@@ -23,26 +23,48 @@ namespace AdventOfCode2018
         public int Part1()
         {
             int numberOfLetters = 6;
-            List<List<int>> steps = new List<List<int>>();
+            List<List<char>> steps = new List<List<char>>();
+
+            //initialise array
             for (int i = 0; i < numberOfLetters; i++)
             {
-                steps.Add(new List<int>());
+                steps.Add(new List<char>());
             }
-            //List<string> shortenedBackwardsInput = new List<string>();
+
+            //fill the steps array list
             foreach (string line in Input)
             {
                 char previousStep = Convert.ToChar(line[5]);
                 char nextStep = Convert.ToChar(line[36]);
-                //shortenedBackwardsInput.Add(nextStep + " <- " + previousStep);
-                steps[nextStep-65].Add(previousStep-65);
+                steps[nextStep-'A'].Add(previousStep);
             }
-            //shortenedBackwardsInput.Sort();
-            //System.IO.File.WriteAllLines("day07-input-sorted-shortbackwards.txt", shortenedBackwardsInput);
-            List<int> startingLetters = new List<int>();
-            for (int i = 0; i < steps.Count; i++)
+
+            //find starting letters
+            List<char> startingLetters = new List<char>();
+            for (int i = 0; i < numberOfLetters; i++)
             {
                 if (steps[i].Count == 0)
-                    startingLetters.Add(i);
+                    startingLetters.Add(Convert.ToChar(i + 'A'));
+            }
+
+            string output = "";
+
+            //start looping through each letter
+            while (output.Length != numberOfLetters)
+            {
+                startingLetters.Sort();
+                char letter = startingLetters[0];
+                output += letter;
+                startingLetters.Remove(letter);
+                for (int i = 0; i < numberOfLetters; i++)
+                {
+                    foreach (char step in steps[i])
+                    {
+                        //need to check for letter prereqs here
+                        if (step == letter && !startingLetters.Contains(Convert.ToChar(i + 'A')))
+                            startingLetters.Add(Convert.ToChar(i + 'A'));
+                    }
+                }
             }
             return 0;
         }
@@ -53,3 +75,4 @@ namespace AdventOfCode2018
         }
     }
 }
+//Step C must be finished before step A can begin.
